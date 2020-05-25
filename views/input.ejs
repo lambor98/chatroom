@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>商品录入</title>
+    <link rel="stylesheet" href="/stylesheets/common.css">
+</head>
+<body>
+    <form id="goods" onsubmit="return false">
+        <p>名称：<input type="text" name="goodName" placeholder="请输入商品"></p>
+        <p>价格：<input type="text" name="price" placeholder="请输入价格"></p>
+        <p>折扣：<input type="text" name="discount" placeholder="请输入折扣"></p>
+        <p>库存：<input type="text" name="remain" placeholder="请输入库存"></p>
+        <p>详情：<input type="text" name="detail" placeholder="请输入详情"></p>
+        <input type="submit" value="录入">
+    </form>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/javascripts/inputgood.js"></script>
+</body>
+</html>

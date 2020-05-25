@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/common.css">
+    <link rel="stylesheet" href="/javascripts/_light7@0.4.3@light7/dist/css/light7.min.css">
+　  <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type='text/javascript' src='/javascripts/_light7@0.4.3@light7/dist/js/light7.min.js' charset='utf-8'></script>
+    <script src="/javascripts/chat.js"></script>
+    <script src="/javascripts/client.js"></script>
+    <title>腾讯秋秋</title>
+</head>
+<style>
+    body{background: white;}
+    .msgBox{display: flex;width: 100%;position: fixed;bottom: 0;height: 2.2rem;background:#E9EAEC;}
+    .msgBox_left{width: 20%;display: flex;justify-content: space-around;align-items: center;font-size: 1.2rem;color:#838486}
+    .msgBox_mid{width:60%;display: flex;align-items: center;}
+    .msgBox_mid input{width: 100%;border-radius: 5px;border: none;height: 1.5rem;}
+    .msgBox_right{width: 20%;}
+    .sendMsg{background: #18B4ED;color: white;padding:.1rem;text-align: center;width: 4rem;margin-left: 1rem;border-radius: .2rem;}
+    .chatMsg{width: 100%;margin-bottom: 2rem;}
+    .chatMsg li{display: flex;flex-direction: row;}
+    .chatMsg .msg_left{width: 20%;}
+    .chatMsg .msg_left .msg_head{width: 2rem;border-radius: 50%;overflow: hidden;margin: .2rem .5rem}
+    .chatMsg .msg_left .msg_head img{width: 2rem;}
+    .chatMsg .msg_right{display: flex;flex-direction: column;}
+    .msg_right p{margin: .3rem 0;align-self: left;}
+    .msg_user{color: teal;font-size: .65rem;}
+    .msg_now{background: white;box-shadow: 0 0 10px #ddd;padding: .5rem;border-radius: .5rem; max-width: 10rem;}
+    .myself{display: flex;flex-direction: row-reverse !important;}
+    /* .myself .msg_right{display: flex;flex-direction: column;} */
+    .myself .msg_right p{align-self: flex-end;}
+    .myself .msg_right p:last-child{background: blue;color: white;}
+    .online_num{font-size: .4rem;position: absolute;bottom: -.75rem;left: 0;right: 0;margin: auto;}
+    /* .bar-nav{position: relative;} */
+    
+</style>
+<body>
+    <header class="bar bar-nav">
+        <a href="javascript:history.back(-1)" class="button button-link button-nav pull-left back">
+            <span class="icon icon-left"></span>
+            返回
+        </a>
+        <h1 class="title">
+            测试聊天室
+            <!-- <span class="online_num">当前在线人数:<span class="num_ol">0</span></span> -->
+        </h1>
+    </header>
+    <div class="content">
+        <ul class="chatMsg">
+            <!-- <li>
+                <div class="msg_left">
+                    <div class="msg_head">
+                        <img src="/images/defalut.jpg" alt="">
+                    </div>
+                </div>
+                <div class="msg_right">
+                   <p class="msg_user">lambor98</p>
+                   <p class="msg_now">啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+                </div>
+            </li>
+            <li class="myself">
+                <div class="msg_left">
+                    <div class="msg_head">
+                        <img src="/images/defalut.jpg" alt="">
+                    </div>
+                </div>
+                <div class="msg_right">
+                    <p class="msg_user">lambor98</p>
+                    <p class="msg_now">啊哈哈哈哈哈哈哈哈哈哈</p>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+
+    <div class="msgBox">
+           <div class="msgBox_left">
+                <span class="icon icon-emoji"></span>
+                <span class="icon icon-phone"></span>
+           </div>
+           <div class="msgBox_mid">
+                <input type="text" class="message">
+           </di1v>
+           <div class="msgBox_right">
+                <div class="btn sendMsg">发送</div>
+           </div>
+        
+    </div>
+</body>
+<script>
+    let user={};
+    getUserInfo();
+    function getUserInfo(){
+        $.ajax({
+            url:"/ajax/getUser",
+            type:"post",
+            success(res){
+                console.log(res)
+                if(res.code == 200){
+                    user=res.data
+                    socket.emit('login',{selfName:user.user,selfImg:user.img,selfUsername:user.nickName})
+                }else{
+                    $.alert("网络出错,返回登陆页面",()=>{
+                        window.location.href= "/login"
+                    })
+                }
+            }
+        })
+    }
+
+    $(".sendMsg").click(()=>{
+        let msgObj ={
+            user,
+            msg:$(".message").val()
+        }
+        socket.emit("toAll",msgObj);
+        addMsg(msgObj,true)
+        $(".message").val("")
+    })
+</script>
+</html>

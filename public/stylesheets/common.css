@@ -1,0 +1,159 @@
+/* $yh:"Microsoft yahei"; */
+
+
+html {
+   font-size: 75%; font-family:"Microsoft yahei" !important;
+   font-size:calc(100vw/7.5);
+   font-size:-webket-calc(100vw/7.5);  
+    /* // 设计稿宽度  750px  */
+}
+body,h1,h2,h3,h4,h5,h6,blockquote,ol,ul,dl,dd,p,textarea,input,select,option,form {
+    margin:0; padding:0;
+}
+body{
+    /* // background: #f5f4f0; */
+    -webkit-tap-highlight-color:transparent;
+    font-size:.24rem;
+}
+ 
+ol,ul,textarea,input,option,th,td {
+    padding:0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-weight: normal;
+    font-size:100%;
+}
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {
+    display: block;
+}
+table {
+    border-collapse:collapse;border-spacing: 0;
+}
+ul,ol { 
+    list-style-type:none;
+}
+.clearfix:after {
+    content:'.';display:block;height:0;clear:both;visibility:hidden;
+}
+//.clearfix {*zoom:1;}
+.clear {
+    clear:both;height:0;overflow:hidden;
+}
+
+input[type=text],textarea{
+    -webkit-appearance:none;
+}
+
+input:focus{
+    -webkit-user-modify:read-write-plaintext-only;
+}
+fieldset, img {
+    border: 0;
+}
+img{
+    display: block;
+}
+a {
+    text-decoration:none;
+}
+a,textarea,input{
+    outline:none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+textarea {
+    overflow:auto;resize:none;
+}
+
+
+
+
+/* 临时存放 10-9 */
+/* * { touch-action: none; } */
+.item-content{font-size: .7rem;}
+.bar-nav{background: #18B4ED !important;}
+.bar-nav h1{color: white;}
+.online,.chatRoom{width: 100%;
+    height: 3.5rem;
+    display: flex;
+    background: white;
+    font-size: .7rem;
+}
+.online img,.chatRoom img{
+    width: 2.5rem;
+}
+.online_left{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.head_img{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.small{
+    width: 2rem;
+    height: 2rem;
+}
+.small img{
+    width: 2rem;
+    height: 2rem;
+}
+.online_right{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;;
+}
+.online_right p{
+    margin: .1rem 0;
+    overflow: hidden;/*超出部分隐藏*/
+    text-overflow:ellipsis;/* 超出部分显示省略号 */
+    white-space: nowrap;/*规定段落中的文本不进行换行 */
+    max-width: 50%;
+}
+.online_right span{
+    display: flex;
+    align-items: center;;
+}
+.online_right img{width: 1.3rem;margin-left: .8rem;height: .5rem;}
+.online_right p:last-child{
+    color: grey;
+    font-size: .4rem;
+}
+.chat_name{
+    width:55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.chat_time{
+    width:15%;
+    display: flex;
+    justify-content: flex-start;
+}
+.chat_name p{
+    margin: .2rem 0;
+    font-weight: bold;
+}
+.chat_name p:last-child{
+    color: rgb(177, 148, 148);
+    font-weight: normal !important;
+    font-size:.6rem !important;
+}
+.chat_time p{
+    color: rgb(204, 198, 198);
+    font-size: .55rem;
+}
+.pull-left{
+    color:white !important;
+}

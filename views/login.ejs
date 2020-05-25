@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>腾讯秋秋，开心每一天</title>
+    <link rel="stylesheet" href="/stylesheets/common.css">
+    <link rel="stylesheet" href="/javascripts/_light7@0.4.3@light7/dist/css/light7.min.css">
+　  <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type='text/javascript' src='/javascripts/_light7@0.4.3@light7/dist/js/light7.min.js' charset='utf-8'></script>
+    <script src="/javascripts/chat.js"></script>
+    <script src="/javascripts/client.js"></script>
+<style>
+* { touch-action: none; }
+.login{background: red !important;color: white;border: none;}
+
+</style>
+</head>
+<body>
+    <header class="bar bar-nav">
+        <h1 class="title">登入</h1>
+    </header>
+    <div class="content">
+        <div class="list-block">
+            <ul>
+              
+                <li>
+                    <div class="item-content">
+                        <!-- <div class="item-media"><i class="icon icon-form-name"></i></div> -->
+                        <div class="item-inner">
+                        <div class="item-title label">账号</div>
+                        <div class="item-input">
+                            <input type="text" placeholder="您的账号" autocomplete="off" class="user">
+                        </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <!-- <div class="item-media"><i class="icon icon-form-password"></i></div> -->
+                        <div class="item-inner">
+                        <div class="item-title label">密码</div>
+                        <div class="item-input">
+                            <input type="password" placeholder="您的密码" autocomplete="off" class="pwd">
+                        </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="content-block">
+            <p><a href="#" class="button button-big button-round login">登入</a></p>
+        </div>
+        <div class="content-block">
+                <div class="row">
+                  <div class="col-50"><a href="/regsiter" class="button button-big button-round button-danger">没有账号？注册</a></div>
+                  <div class="col-50"><a href="#" class="button button-big button-round button-success">忘记密码</a></div>
+                </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(".login").click(()=>{
+        $.showPreloader();
+        let data = {
+            user:$(".user").val(),
+            passwd:$(".pwd").val()
+        }
+        if(data.user && data.passwd){
+            $.ajax({
+                url:"/ajax/login",
+                type:"post",
+                data,
+                success(res){
+                    $.hidePreloader();
+                   if(res.code==200){
+                        $.alert("登陆成功",()=>{
+                            window.location.href = "/"
+                        })
+                        setInterval(()=>{
+                            window.location.href = "/"
+                        },2000)
+                   }else{
+                       $.toast(res.txt)
+                   }
+                },
+                error(){ 
+                    $.hidePreloader();
+                    $.toast("网路出错")
+                }
+            })
+        }else{
+            $.toast("请输入账号密码")
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>腾讯秋秋</title>
+    <link rel="stylesheet" href="/stylesheets/common.css">
+    <link rel="stylesheet" href="/javascripts/_light7@0.4.3@light7/dist/css/light7.min.css">
+　  <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type='text/javascript' src='/javascripts/_light7@0.4.3@light7/dist/js/light7.min.js' charset='utf-8'></script>
+    <script src="/javascripts/chat.js"></script>
+    <script src="/javascripts/client.js"></script>
+
+  </head>
+  <style>
+   
+    .active .icon{color:#18B4ED; }
+  </style>
+  <body>
+    <header class="bar bar-nav">
+      <h1 class="title">消息 <%=user%></h1>
+    </header>
+    <div class="bar bar-header-secondary">
+        <div class="searchbar">
+          <a class="searchbar-cancel">Cancel</a>
+          <div class="search-input">
+            <label class="icon icon-search" for="search"></label>
+            <input type="search" id='search' placeholder='搜个锤子你搜'/>
+          </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="online_list">
+            <!-- <div class="online">
+                <div class="online_left">
+                    <div class="head_img">
+                        <img src="/images/defalut.jpg" alt="">
+                    </div>
+                </div>
+                <div class="online_right">左边画龙</div>
+            </div> -->
+        </div>
+    </div>
+
+    <nav class="bar bar-tab">
+        <a class="tab-item" href="/">
+          <span class="icon icon-message"></span>
+          <span class="tab-label">消息</span>
+        </a>
+        <a class="tab-item active" href="/online">
+            <span class="icon icon-me"></span>
+            <span class="tab-label">联系人</span>
+            <!-- <span class="badge">2</span> -->
+        </a>
+        <a class="tab-item" href="#">
+            <span class="icon icon-star"></span>
+            <span class="tab-label">动态</span>
+        </a>
+      </nav>
+  </body>
+  <script>
+      let selfName = "<%=user%>"
+      console.log(selfName)
+      socket.emit('login',{selfName})
+  </script>
+</html>
